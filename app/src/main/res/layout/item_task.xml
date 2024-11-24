@@ -18,5 +18,13 @@
         android:id="@+id/taskCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Complétée"
     />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Supprimer la tâche" />
 </LinearLayout>
