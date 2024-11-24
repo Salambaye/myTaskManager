@@ -8,8 +8,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TaskAdapter(private val taskList: MutableList<String>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
-    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TaskAdapter(private val taskList: MutableList<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val taskTitle: TextView = itemView.findViewById(R.id.taskTitle)
         val taskCompleted: CheckBox = itemView.findViewById(R.id.taskCompleted)
         val deleteButton: ImageButton = itemView.findViewById(R.id.deleteButton)
@@ -21,20 +22,20 @@ class TaskAdapter(private val taskList: MutableList<String>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.taskTitle.text = taskList[position]
+        val task = taskList[position]
+        holder.taskTitle.text = task.name
+        holder.taskCompleted.isChecked = task.isCompleted
+
+        // Gérer les changements d'état de la case à cocher
         holder.taskCompleted.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                // Marquer la tâche comme complétée, vous pouvez l'ajouter dans une base de données ou changer son état
-                taskList[position] = taskList[position] + " (Complétée)"
-            } else {
-                taskList[position] = taskList[position].replace(" (Complétée)", "")
-            }
+            task.isCompleted = isChecked
         }
 
+        // Supprimer une tâche
         holder.deleteButton.setOnClickListener {
-            // Supprimer la tâche
             taskList.removeAt(position)
             notifyItemRemoved(position)
+            notifyItemRangeChanged(position, taskList.size)
         }
     }
 
