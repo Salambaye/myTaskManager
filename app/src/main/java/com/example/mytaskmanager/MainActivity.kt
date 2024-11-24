@@ -1,43 +1,22 @@
 package com.example.mytaskmanager
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.mytaskmanager.ui.theme.MyTaskManagerTheme
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyTaskManagerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
-            }
-        }
-    }
-}
+        setContentView(R.layout.activity_main)
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
-}
+        // Initialiser le RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = TaskAdapter(listOf("Acheter des courses", "Faire du sport", "Préparer la réunion"))
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyTaskManagerTheme {
-        Greeting("Android")
+        // Toast de bienvenue
+        Toast.makeText(this, "Bienvenue dans l'application de gestion de tâches", Toast.LENGTH_SHORT).show()
     }
 }
