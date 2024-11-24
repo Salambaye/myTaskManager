@@ -6,12 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- RecyclerView pour afficher la liste des tâches -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_task" />
+        tools:listitem="@layout/item_task"/>
+    <!--  app:layout_constraintBottom_toTopOf="@+id/btnAddTask" -->
 
+
+    <!-- Bouton pour ajouter une tâche -->
+
+    <Button
+        android:id="@+id/btnAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter une tâche"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTasks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 
 
