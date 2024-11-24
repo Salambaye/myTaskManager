@@ -13,7 +13,18 @@ Bienvenue dans **My Task Manager**, une application Android simple pour gérer v
 
 ## Installation
 Clonez le dépôt sur votre machine locale :
-```bash
+
 git clone https://github.com/salambaye/my-task-manager.git
+
+##Auteure
+Salamata Nourou MBAYE
+
+# Captures d'écran
+Accueil
+![1](https://github.com/user-attachments/assets/25a021ba-d4a9-4dae-ae8e-0c6376c45bd8)
+
+
+
+
 
 
